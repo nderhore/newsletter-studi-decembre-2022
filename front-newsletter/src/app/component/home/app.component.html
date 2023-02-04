@@ -1,0 +1,24 @@
+<ng-container class="container-lg">
+  <div class="wrapper">
+
+    <div class="controls">
+      <button mat-raised-button (click)="createDialog()">Ajouter un nouvel element</button>
+    </div>
+
+    <ng-container *ngIf="charged">
+      <ng-container *ngFor="let row of todos">
+        <div class="todoContainer">
+          <span>{{row.title}}</span>
+            <div class="action">
+                <a [matTooltip]="details" (click)="openDialog('read',row)"> <i class="fa fa-search" aria-hidden="true"></i></a>
+                <a [matTooltip]="update" (click)="openDialog('update',row)"> <i class="fa fa-edit" aria-hidden="true"></i></a>
+                <a [matTooltip]="delete" (click)="openDialog('delete',row)"> <i class="fa fa-remove" aria-hidden="true"></i></a>
+                <a [matTooltip]="termine" (click)="changDone(row)" *ngIf="row.done"> <i class="fa fa-circle-check" aria-hidden="true"></i></a>
+                <a [matTooltip]="nonFini" (click)="changDone(row)" *ngIf="!row.done"> <i class="fa fa-circle" aria-hidden="true"></i></a>
+
+            </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-container>
