@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{namePopin()}}</h1>
+<div mat-dialog-content class="forms" readonly="true">
+  <mat-form-field appearance="fill">
+    <mat-label>Titre</mat-label>
+    <input matInput [readonly]="isReadOnly()" [(ngModel)]="newData.title">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>description</mat-label>
+    <input matInput [readonly]="isReadOnly()" [(ngModel)]="newData.description">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>adresse</mat-label>
+    <input matInput [readonly]="isReadOnly()" [(ngModel)]="newData.adresse">
+  </mat-form-field>
+
+  <mat-checkbox  [disabled]="isReadOnly()" [checked]="newData.done" [(ngModel)]="newData.done"></mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="abort()">Abandon</button>
+  <button mat-button *ngIf="createMode()" (click)="onSubmit()">Ajouter</button>
+  <button mat-button *ngIf="editMode()" (click)="onSubmit()">Modifier</button>
+  <button mat-button (click)="delete()" *ngIf="deleteMode()">Suppression</button>
+</div>
