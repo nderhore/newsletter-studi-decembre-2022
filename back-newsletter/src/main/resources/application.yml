@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db/studi-db?allowPublicKeyRetrieval=true&useSSL=false
+    username: studi-user
+    password: VM06Tf8OssLKvAe
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate.dialect:  org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql : true
+server:
+  port: 8080
