@@ -9,7 +9,7 @@ env:
   VPS_USER: ${{ secrets.VPS_USER }}
   VPS_PASSWORD: ${{ secrets.VPS_PASSWORD }}
   VPS_HOST: ${{ secrets.VPS_HOST }}
-  APP_PATH: ${{ variables. APP_PATH }}
+  APP_PATH: /app
 
 
 jobs:
