@@ -1,5 +1,5 @@
 # telechargement de l'image Node dans le but d'installer les dependances du projet
-FROM node:18.10.0-alpine AS build
+FROM node:18-alpine3.19 AS build
 
 # mkdir /app && cd
 WORKDIR /app
@@ -9,7 +9,7 @@ COPY package.json .
 
 # installation de yarn et dependance
 #RUN npm i yarn@1.22.22
-RUN yarn install
+#RUN yarn install
 
 # Copier le reste du code
 COPY . .
