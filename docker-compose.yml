@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.4.0
+    container_name: studi-newsletter-db
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+
+  back:
+    build:
+      context: ./back-newsletter
+    restart: on-failure
+    container_name: studi-newsletter-back
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    links:
+      - db # modifie le fichier /etc/hosts
+    stdin_open: true
+    tty: true
+
+  front:
+    build:
+      context: ./front-newsletter
+    restart: always
+    container_name: studi-newsletter-front
+    ports:
+      - "80:80"
+    depends_on:
+      - back
+
+volumes:
+  mysql-data:
+
+
+
