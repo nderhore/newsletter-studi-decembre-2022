@@ -22,12 +22,15 @@ services:
       - "8080:8080"
     depends_on:
       - db
+    links:
+      - db # modifie le fichier /etc/hosts
     stdin_open: true
     tty: true
 
   front:
     build:
       context: ./front-newsletter
+    restart: always
     container_name: studi-newsletter-front
     ports:
       - "80:80"
