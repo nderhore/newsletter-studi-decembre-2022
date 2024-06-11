@@ -4,11 +4,9 @@ services:
   db:
     image: mysql:8.4.0
     container_name: studi-newsletter-db
-    environment:
-      - MYSQL_DATABASE=studi-db
-      - MYSQL_USER= studi-user
-      - MYSQL_PASSWORD=VM06Tf8OssLKvAe
-      - MYSQL_ROOT_PASSWORD=root_password
+    restart: unless-stopped
+    env_file:
+      - .env
     ports:
       - "3306:3306"
     volumes:
@@ -18,11 +16,14 @@ services:
   back:
     build:
       context: ./back-newsletter
+    restart: on-failure
     container_name: studi-newsletter-back
     ports:
       - "8080:8080"
     depends_on:
       - db
+    stdin_open: true
+    tty: true
 
   front:
     build:
